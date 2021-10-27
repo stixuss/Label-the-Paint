@@ -18,7 +18,7 @@
                             <TextBox Margin="1"
                                      Text="{TemplateBinding Text}"
                                      BorderThickness="0"
-                                     Background="Transparent"
+                                     Background="White"
                                      VerticalAlignment="Center"
                                      Padding="5"
                                      Foreground="Black"/>
