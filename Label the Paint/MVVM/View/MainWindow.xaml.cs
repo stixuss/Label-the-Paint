@@ -9,7 +9,7 @@ namespace Label_the_Paint
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainWindowViewModel _mwvm = new MainWindowViewModel();
+        public MainWindowViewModel _mwvm = new MainWindowViewModel();
 
         public MainWindow()
         {

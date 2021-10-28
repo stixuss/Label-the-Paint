@@ -6,8 +6,9 @@
         <Style.Setters>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="0,0,15,0"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>

@@ -4,14 +4,10 @@ using System;
 
 namespace Label_the_Paint.MVVM.Model
 {
-    class Label : ObservableObject
+    public class Label : ObservableObject
     {
-        public Label()
-        {
 
-        }
-
-        string _name = "";
+        private string _name = "Nazwa Farby";
         public string Name
         {
             get
@@ -22,11 +18,11 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
-        string _number = "";
+        private string _number = "Numer Farby";
         public string Number
         {
             get
@@ -37,11 +33,11 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _number = value;
-                OnPropertyChanged("Number");
+                OnPropertyChanged();
             }
         }
 
-        string _catalog = "";
+        private string _catalog = "Numer katalogu";
         public string Catalog
         {
             get
@@ -52,11 +48,11 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _catalog = value;
-                OnPropertyChanged("Catalog");
+                OnPropertyChanged();
             }
         }
 
-        DateTime _date;
+        private DateTime _date;
         public DateTime Date
         {
             get
@@ -67,11 +63,11 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _date = value;
-                OnPropertyChanged("Date");
+                OnPropertyChanged();
             }
         }
 
-        string _code = "";
+        private string _code = "Kod farby";
         public string Code
         {
             get
@@ -82,7 +78,7 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _code = value;
-                OnPropertyChanged("Code");
+                OnPropertyChanged();
             }
         }
     }

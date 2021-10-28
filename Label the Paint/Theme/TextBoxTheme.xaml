@@ -16,12 +16,13 @@
                                RadiusY="5"/>
 
                             <TextBox Margin="1"
-                                     Text="{TemplateBinding Text}"
+                                     Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      BorderThickness="0"
                                      Background="White"
                                      VerticalAlignment="Center"
                                      Padding="5"
-                                     Foreground="Black"/>
+                                     Foreground="Black"
+                                     FontWeight="Bold"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

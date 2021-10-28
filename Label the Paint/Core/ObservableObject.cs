@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Label_the_Paint.Core
 {
-    class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
 
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,10 +3,10 @@ using System.Windows.Input;
 
 namespace Label_the_Paint.Core
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        private Action<object> _execute;
-        private Func<object, bool> _canExectute;
+        private readonly Action<object> _execute;
+        private readonly Func<object, bool> _canExectute;
         
         public event EventHandler CanExecuteChanged
         {
