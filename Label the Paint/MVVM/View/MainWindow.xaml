@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Label_the_Paint"
         mc:Ignorable="d"
-        Title="Lebel the Paint" Height="350" Width="500"
+        Title="Lebel the Paint" Height="600" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True" 
         MouseDown="Window_MouseDown">
+    <!--MouseRightButtonDown="Window_MouseRightButtonDown"-->
 
     <Border Background="#ded5d0 "
             CornerRadius="20">
@@ -29,25 +30,28 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" 
                        Text="NAZWA"/>
-            <TextBox Grid.Column="1"
+            <TextBox x:Name="TextBox_Name"
+                     Grid.Column="1"
                      Text="{Binding Label.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxTheme}"/>
 
             <TextBlock Grid.Row="1" 
                        Text="NUMER"/>
-            <TextBox Grid.Column="1" 
+            <TextBox x:Name="TextBox_Number"
+                     Grid.Column="1" 
                      Grid.Row="1"
                      Text="{Binding Label.Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxTheme}"/>
 
             <TextBlock Grid.Row="2"/>
-            <TextBlock Grid.Column="1" 
+            <TextBlock x:Name="TextBox_NumberBarcode"
+                       Grid.Column="1" 
                      Grid.Row="2"
                      Text="{Binding Label.Number}"
                      FontFamily="/Font/#Libre Barcode 128 Text"
@@ -57,35 +61,55 @@
 
             <TextBlock Grid.Row="3"
                        Text="KATALOG"/>
-            <TextBox Grid.Column="1" 
+            <TextBox x:Name="TextBox_Catalog"
+                     Grid.Column="1" 
                      Grid.Row="3"
                      Text="{Binding Label.Catalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxTheme}"/>
 
             <TextBlock Grid.Row="4"
                        Text="DATA"/>
-            <DatePicker Grid.Column="1" 
+            <DatePicker x:Name="TextBox_Date"
+                        Grid.Column="1" 
                         Grid.Row="4"
                         FontSize="14"
-                        FirstDayOfWeek="Monday">
+                        FirstDayOfWeek="Monday"
+                        Text="{Binding Label.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </DatePicker>
 
             <TextBlock Grid.Row="5"
                        Text="KOD FARBY"/>
-            <TextBox Grid.Column="1" 
+            <TextBox x:Name="TextBox_Code"
+                     Grid.Column="1" 
                      Grid.Row="5"
                      Text="{Binding Label.Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxTheme}"/>
 
-            <Button Content="Drukuj" 
+            <Button Content="Preview"
                     Grid.Column="1"
                     Grid.Row="7"
-                    IsEnabled="False"
-                    Command="{Binding PrintLabel}"></Button>
+                    Background="LightGreen"
+                    Command="{Binding GenerateLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
+
+            <DocumentViewer x:Name="DocumentViewer_PaintLabel"
+                            Margin="2"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            Document="{Binding PaintLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </DocumentViewer>
+
+            <Button x:Name="CloseWindow_Button" 
+                    Content="Exit"
+                    Grid.Row="9" 
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Foreground="White" 
+                    Background="DarkSlateGray" 
+                    Click="CloseWindow_Click"/>
 
             <Label Grid.ColumnSpan="2"
                    Grid.Row="9"
-                   Content="@2021"
+                   Content="2021 @ v1.0"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    FontSize="10"></Label>
