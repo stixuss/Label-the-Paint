@@ -11,8 +11,13 @@
         Background="Transparent"
         AllowsTransparency="True" 
         MouseDown="Window_MouseDown">
-    <!--MouseRightButtonDown="Window_MouseRightButtonDown"-->
-
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="Close_Button">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="RosyBrown"></Setter>
+            
+        </Style>
+    </Window.Resources>
     <Border Background="#ded5d0 "
             CornerRadius="20">
         <Grid Margin="20,20,20,10">
@@ -31,6 +36,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
@@ -96,19 +102,16 @@
                             Grid.Row="8"
                             Grid.Column="1"
                             Document="{Binding PaintLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                
             </DocumentViewer>
 
             <Button x:Name="CloseWindow_Button" 
-                    Content="Exit"
-                    Grid.Row="9" 
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Foreground="White" 
-                    Background="DarkSlateGray" 
-                    Click="CloseWindow_Click"/>
+                    Grid.Row="9" Grid.Column="1"
+                    Click="CloseWindow_Click"
+                    Style="{StaticResource Close_Button}">Exit</Button>
 
             <Label Grid.ColumnSpan="2"
-                   Grid.Row="9"
+                   Grid.Row="10"
                    Content="2021 @ v1.0"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"

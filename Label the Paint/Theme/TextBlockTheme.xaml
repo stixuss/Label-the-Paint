@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Label_the_Paint.Theme">
     <Style TargetType="{x:Type TextBlock}">
-        <!--x:Key="TextBlockTheme"-->
         <Style.Setters>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalAlignment" Value="Center"/>

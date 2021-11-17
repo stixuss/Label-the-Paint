@@ -43,6 +43,8 @@ namespace Label_the_Paint.MVVM.ViewModel
             FixedDocument doc = CreateFixedDocument();
             string filePath = "Etykiety\\" + Label.Number + "_" + Label.Date + ".xps";
 
+            CheckIfFolderLabelsExistsOrCreate();
+
             if (File.Exists(filePath) == true)
             {
                 MessageBoxResult mbr = MessageBox.Show("Taki etykieta już istnieje. Czy chcesz zobaczyć podgląd?", "Błąd", MessageBoxButton.YesNo, MessageBoxImage.Error);
@@ -109,6 +111,15 @@ namespace Label_the_Paint.MVVM.ViewModel
 
             doc.Pages.Add(page);
             return doc;
+        }
+
+        private bool CheckIfFolderLabelsExistsOrCreate()
+        {
+            if (Directory.Exists(".\\Etykiety"))
+                return true;
+
+            Directory.CreateDirectory(".\\Etykiety");
+            return true;
         }
     }
 }
