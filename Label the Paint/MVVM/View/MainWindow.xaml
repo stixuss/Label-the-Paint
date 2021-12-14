@@ -5,21 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Label_the_Paint"
         mc:Ignorable="d"
-        Title="Lebel the Paint" Height="600" Width="500"
-        WindowStyle="None"
-        ResizeMode="NoResize"
+        Title="Lebel the Paint" Height="700" Width="500"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanMinimize"
         Background="Transparent"
-        AllowsTransparency="True" 
         MouseDown="Window_MouseDown">
-    <Window.Resources>
-        <Style TargetType="Button" x:Key="Close_Button">
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Background" Value="RosyBrown"></Setter>
-            
-        </Style>
-    </Window.Resources>
-    <Border Background="#ded5d0 "
-            CornerRadius="20">
+
+    <Border Background="#ded5d0">
         <Grid Margin="20,20,20,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
@@ -35,11 +27,15 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
+            <DockPanel Grid.Column="1">
+            </DockPanel>
+            
             <TextBlock Grid.Row="0" 
                        Text="NAZWA"/>
             <TextBox x:Name="TextBox_Name"
@@ -48,7 +44,7 @@
                      Style="{StaticResource TextBoxTheme}"/>
 
             <TextBlock Grid.Row="1" 
-                       Text="NUMER"/>
+                       Text="NUMER SERII"/>
             <TextBox x:Name="TextBox_Number"
                      Grid.Column="1" 
                      Grid.Row="1"
@@ -65,13 +61,21 @@
                      HorizontalAlignment="Center"
                      Margin="0"/>
 
-            <TextBlock Grid.Row="3"
+            <!--<TextBlock Grid.Row="3"
                        Text="KATALOG"/>
             <TextBox x:Name="TextBox_Catalog"
                      Grid.Column="1" 
                      Grid.Row="3"
                      Text="{Binding Label.Catalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}"/>
+                     Style="{StaticResource TextBoxTheme}"/>-->
+
+            <TextBlock Grid.Row="3"
+                       Text="ZAMÓWIENIA"></TextBlock>
+            <TextBox x:Name="TextBox_Orders"
+                     Grid.Column="1"
+                     Grid.Row="3"
+                     Text="{Binding Label.Orders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource TextBoxTheme}"></TextBox>
 
             <TextBlock Grid.Row="4"
                        Text="DATA"/>
@@ -83,35 +87,53 @@
                         Text="{Binding Label.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </DatePicker>
 
-            <TextBlock Grid.Row="5"
+            <!--<TextBlock Grid.Row="5"
                        Text="KOD FARBY"/>
             <TextBox x:Name="TextBox_Code"
                      Grid.Column="1" 
                      Grid.Row="5"
                      Text="{Binding Label.Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}"/>
+                     Style="{StaticResource TextBoxTheme}"/>-->
 
-            <Button Content="Preview"
+            <TextBlock Grid.Row="5"
+                       Text="ILOŚĆ"/>
+            <TextBox x:Name="TextBox_Quantity" 
+                     Grid.Column="1"
+                     Grid.Row="5"
+                     Text="{Binding Label.Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource TextBoxTheme}">
+            </TextBox>
+
+            <TextBlock Grid.Row="6"
+                       Text="WAGA"/>
+            <TextBox x:Name="TextBox_Weight"
+                     Grid.Column="1"
+                     Grid.Row="6"
+                     Text="{Binding Label.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource TextBoxTheme}">
+            </TextBox>
+
+            <Button Content="Generuj etykietę"
                     Grid.Column="1"
-                    Grid.Row="7"
+                    Grid.Row="8"
                     Background="LightGreen"
                     Command="{Binding GenerateLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
 
             <DocumentViewer x:Name="DocumentViewer_PaintLabel"
                             Margin="2"
-                            Grid.Row="8"
+                            Grid.Row="9"
                             Grid.Column="1"
-                            Document="{Binding PaintLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                
-            </DocumentViewer>
+                            Document="{Binding PaintLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            />
 
-            <Button x:Name="CloseWindow_Button" 
+            <!--<Button x:Name="CloseWindow_Button"
+                    Visibility="Collapsed"
                     Grid.Row="9" Grid.Column="1"
                     Click="CloseWindow_Click"
-                    Style="{StaticResource Close_Button}">Exit</Button>
+                    Style="{StaticResource Close_Button}">Exit</Button>-->
 
             <Label Grid.ColumnSpan="2"
-                   Grid.Row="10"
+                   Grid.Row="11"
                    Content="2021 @ v1.0"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
