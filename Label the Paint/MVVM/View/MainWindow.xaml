@@ -27,14 +27,12 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <DockPanel Grid.Column="1">
-            </DockPanel>
+            <DockPanel Grid.Column="1"></DockPanel>
             
             <TextBlock Grid.Row="0" 
                        Text="NAZWA"/>
@@ -55,19 +53,11 @@
             <TextBlock x:Name="TextBox_NumberBarcode"
                        Grid.Column="1" 
                      Grid.Row="2"
-                     Text="{Binding Label.Number}"
-                     FontFamily="/Font/#Libre Barcode 128 Text"
+                     Text="{Binding Label.Barcode39}"
+                     FontFamily="/Font/#Libre Barcode 39 Text"
                      FontSize="40"
                      HorizontalAlignment="Center"
                      Margin="0"/>
-
-            <!--<TextBlock Grid.Row="3"
-                       Text="KATALOG"/>
-            <TextBox x:Name="TextBox_Catalog"
-                     Grid.Column="1" 
-                     Grid.Row="3"
-                     Text="{Binding Label.Catalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}"/>-->
 
             <TextBlock Grid.Row="3"
                        Text="ZAMÓWIENIA"></TextBlock>
@@ -87,50 +77,26 @@
                         Text="{Binding Label.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </DatePicker>
 
-            <!--<TextBlock Grid.Row="5"
-                       Text="KOD FARBY"/>
-            <TextBox x:Name="TextBox_Code"
-                     Grid.Column="1" 
-                     Grid.Row="5"
-                     Text="{Binding Label.Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}"/>-->
-
             <TextBlock Grid.Row="5"
-                       Text="ILOŚĆ"/>
-            <TextBox x:Name="TextBox_Quantity" 
-                     Grid.Column="1"
-                     Grid.Row="5"
-                     Text="{Binding Label.Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}">
-            </TextBox>
-
-            <TextBlock Grid.Row="6"
                        Text="WAGA"/>
             <TextBox x:Name="TextBox_Weight"
                      Grid.Column="1"
-                     Grid.Row="6"
+                     Grid.Row="5"
                      Text="{Binding Label.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource TextBoxTheme}">
-            </TextBox>
+                     Style="{StaticResource TextBoxTheme}"></TextBox>
 
             <Button Content="Generuj etykietę"
                     Grid.Column="1"
-                    Grid.Row="8"
+                    Grid.Row="7"
                     Background="LightGreen"
                     Command="{Binding GenerateLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
 
             <DocumentViewer x:Name="DocumentViewer_PaintLabel"
                             Margin="2"
-                            Grid.Row="9"
+                            Grid.Row="8"
                             Grid.Column="1"
                             Document="{Binding PaintLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             />
-
-            <!--<Button x:Name="CloseWindow_Button"
-                    Visibility="Collapsed"
-                    Grid.Row="9" Grid.Column="1"
-                    Click="CloseWindow_Click"
-                    Style="{StaticResource Close_Button}">Exit</Button>-->
 
             <Label Grid.ColumnSpan="2"
                    Grid.Row="11"

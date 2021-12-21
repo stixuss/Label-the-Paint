@@ -10,7 +10,6 @@ namespace Label_the_Paint.MVVM.Model
 {
     public class Label : ObservableObject
     {
-
         public Label()
         {
             
@@ -43,21 +42,7 @@ namespace Label_the_Paint.MVVM.Model
             {
                 _number = value;
                 OnPropertyChanged();
-            }
-        }
-
-        private string _catalog = "";
-        public string Catalog
-        {
-            get
-            {
-                return _catalog;
-            }
-
-            set
-            {
-                _catalog = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Barcode39");
             }
         }
 
@@ -72,21 +57,6 @@ namespace Label_the_Paint.MVVM.Model
             set
             {
                 _date = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _code = "";
-        public string Code
-        {
-            get
-            {
-                return _code;
-            }
-
-            set
-            {
-                _code = value;
                 OnPropertyChanged();
             }
         }
@@ -121,20 +91,20 @@ namespace Label_the_Paint.MVVM.Model
             }
         }
 
-        private string _quantity = "";
-        public string Quantity
+        private string _barcode39 = "";
+        public string Barcode39
         {
-            get
-            {
-                return _quantity;
+            get 
+            { 
+                return String.Format("*" + Number + "*"); 
             }
-
             set
             {
-                _quantity = value;
+                _barcode39 = value;
                 OnPropertyChanged();
             }
         }
+
 
         #region CREATE A LABEL PAGE
         public FixedPage CreateOneFixedPage(Label label)
@@ -142,20 +112,14 @@ namespace Label_the_Paint.MVVM.Model
             FixedPage fixedPage = PageLayout();
 
             fixedPage.Children.Add((UIElement)NameLine(label));
-
             fixedPage.Children.Add((UIElement)TextLineVertical("____________________________________________", 0.3, 0));
             fixedPage.Children.Add((UIElement)TextLine("ZAMÓWIENIA", 0.5, 0.25));
             fixedPage.Children.Add((UIElement)OrdersLine(label));
             fixedPage.Children.Add((UIElement)TextLineVertical("____________________________________________", 1.25, 0));
-            //fixedPage.Children.Add((UIElement)NumberLine());
             fixedPage.Children.Add((UIElement)BarcodeLine(label));
-            fixedPage.Children.Add((UIElement)TextLine("ILOŚĆ", 1.5, 1));
-            fixedPage.Children.Add((UIElement)QuantityLine(label));
-            //fixedPage.Children.Add((UIElement)CatalogLine(label));
-            fixedPage.Children.Add((UIElement)TextLine("WAGA", 1.5, 1.35));
-            fixedPage.Children.Add((UIElement)CodeLine(label));
+            fixedPage.Children.Add((UIElement)TextLine("WAGA", 1.5, 1));
             fixedPage.Children.Add((UIElement)WeightLine(label));
-            fixedPage.Children.Add((UIElement)TextLine("DATA PRZYDATNOŚCI", 1.5, 1.7));
+            fixedPage.Children.Add((UIElement)TextLine("DATA PRZYDATNOŚCI", 1.5, 1.35));
             fixedPage.Children.Add((UIElement)DateLine(label));
 
             fixedPage.UpdateLayout();
@@ -199,19 +163,6 @@ namespace Label_the_Paint.MVVM.Model
             return tb;
         }
 
-        private TextBlock QuantityLine(Label label)
-        {
-            TextBlock tb = new TextBlock();
-            tb.Inlines.Add(new Run(label.Quantity) { FontWeight = FontWeights.Bold });
-            tb.FontSize = 17;
-            tb.FontFamily = new FontFamily("Calibri");
-
-            FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 1.12);
-
-            return tb;
-        }
-
         private TextBlock OrdersLine(Label label)
         {
             TextBlock tb = new TextBlock();
@@ -227,29 +178,17 @@ namespace Label_the_Paint.MVVM.Model
             return tb;
         }
 
-        private TextBlock NumberLine()
-        {
-            TextBlock tb = new TextBlock();
-            tb.Inlines.Add(new Run("NUMER INWENTARZOWY"));
-            tb.FontSize = 10;
-            tb.FontFamily = new FontFamily("Calibri");
-
-            FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 0.1);
-
-            return tb;
-        }
-
         private TextBlock BarcodeLine(Label label)
         {
             TextBlock tb = new TextBlock();
-            tb.TextWrapping = TextWrapping.Wrap;
-            tb.Inlines.Add(new Run(label.Number));
-            tb.FontSize = 65;
+            //tb.TextWrapping = TextWrapping.Wrap;
+            tb.Inlines.Add(new Run(label.Barcode39));
+            tb.FontSize = 40;
             tb.FontWeight = FontWeights.Medium;
-            tb.FontFamily = new FontFamily(AppDomain.CurrentDomain.BaseDirectory + @"\Font\#Libre Barcode 128 Text");
+            tb.FontFamily = new FontFamily(AppDomain.CurrentDomain.BaseDirectory + @"\Font\#Libre Barcode 39 Text");
+            tb.FontFamily = new FontFamily("Libre Barcode 39 Text");
 
-            FixedPage.SetLeft(tb, 96 * 1.5);
+            FixedPage.SetLeft(tb, 96 * 1.45);
             FixedPage.SetTop(tb, 96 * 0.25);
 
             return tb;
@@ -284,20 +223,6 @@ namespace Label_the_Paint.MVVM.Model
             return tb;
         }
 
-        private TextBlock CatalogLine(Label label)
-        {
-            TextBlock tb = new TextBlock();
-            tb.Inlines.Add(new Run(label.Catalog) { FontWeight = FontWeights.Bold });
-            tb.FontSize = 17;
-            tb.TextAlignment = TextAlignment.Right;
-            tb.FontFamily = new FontFamily("Calibri");
-
-            FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 1.1);
-
-            return tb;
-        }
-
         private TextBlock DateLine(Label label)
         {
             TextBlock tb = new TextBlock();
@@ -307,22 +232,8 @@ namespace Label_the_Paint.MVVM.Model
             tb.FontFamily = new FontFamily("Calibri");
 
             FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 1.82);
+            FixedPage.SetTop(tb, 96 * 1.47);
 
-            return tb;
-        }
-
-        private TextBlock CodeLine(Label label)
-        {
-            TextBlock tb = new TextBlock();
-            tb.Inlines.Add(new Run(label.Code) { FontWeight = FontWeights.Bold });
-            tb.FontSize = 17;
-            tb.TextAlignment = TextAlignment.Center;
-            tb.FontFamily = new FontFamily("Calibri");
-
-            FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 1.7);
-            
             return tb;
         }
 
@@ -335,7 +246,7 @@ namespace Label_the_Paint.MVVM.Model
             tb.FontFamily = new FontFamily("Calibri");
 
             FixedPage.SetLeft(tb, 96 * 1.5);
-            FixedPage.SetTop(tb, 96 * 1.47);
+            FixedPage.SetTop(tb, 96 * 1.12);
 
             return tb;
         }

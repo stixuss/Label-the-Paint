@@ -23,7 +23,6 @@ namespace Label_the_Paint.MVVM.ViewModel
             GenerateLabel = new RelayCommand(ExecuteGenerateLabel, CanExecuteGenerateLabel);
         }
 
-
         private bool CanExecuteGenerateLabel(object parameter)
         {
             bool condition = Label.Name != "" && 
